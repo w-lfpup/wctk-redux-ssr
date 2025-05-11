@@ -15,13 +15,13 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 type Shape = 'square' | 'circle';
 type RemoveShape = (state: Shape[], shape: Shape) => void;
 
-interface State {
+interface ShapeState {
 	circles: number;
 	squares: number;
 	shapeList: Shape[];
 }
 
-const initialState: State = { squares: 0, circles: 0, shapeList: [] };
+const initialShapeState: ShapeState = { squares: 0, circles: 0, shapeList: [] };
 
 const removeShape: RemoveShape = (shapes: Shape[], shape: Shape) => {
 	const index = shapes.lastIndexOf(shape);
@@ -32,7 +32,7 @@ const removeShape: RemoveShape = (shapes: Shape[], shape: Shape) => {
 
 const shapeSlice = createSlice({
 	name: 'shapes',
-	initialState,
+	initialState: initialShapeState,
 	reducers: {
 		reset: state => { 
 			state.circles = 0;
@@ -62,5 +62,5 @@ const store = configureStore({
 	reducer: shapeSlice.reducer
 });
 
-export type { State, Shape };
+export type { ShapeState, Shape };
 export { store };
