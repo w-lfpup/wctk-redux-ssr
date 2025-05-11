@@ -8,7 +8,8 @@
   modifications to work alongside Lit or webcomponents.
 */
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-const initialShapeState = { squares: 0, circles: 0, shapeList: [] };
+const stateMap = document.querySelector('script[type=statemap]');
+const initialShapeState = JSON.parse(stateMap.textContent);
 const removeShape = (shapes, shape) => {
     const index = shapes.lastIndexOf(shape);
     if (index > -1) {

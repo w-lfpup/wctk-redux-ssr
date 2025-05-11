@@ -11,10 +11,13 @@
   "author": "w-flpup",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "npx tsc --p scripts/",
+    "bundle": "rollup --config rollup.config.js"
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^2.8.1",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.40.2",
     "typescript": "^5.8.3",
     "wctk": "github:w-lfpup/wctk-js"
   }

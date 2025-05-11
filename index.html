@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 
 <head>
+  <script type="importmap">
+    {
+      "imports": {
+        "@redux/tookit": "/scripts/deps/redux_bundled.js",
+        "wctk": "/scripts/deps/wctk_bundled.js"
+      }
+    }
+  </script>
   <script type="statemap">
     {
       "circles": 3,
@@ -38,7 +46,7 @@
   </header>
   <main>
     <section>
-      <shape-dials>
+      <shape-controls>
         <template shadowrootmode="closed">
           <div>
             <button action="decrement_circles">-</button>
@@ -52,8 +60,8 @@
           </div>
           <button action="reset">reset</button>
         </template>
-      </shape-dials>
-      <shape-count>
+      </shape-controls>
+      <shape-table>
         <template shadowrootmode="closed">
           <table>
             <tr>
@@ -63,13 +71,15 @@
               <td>circles</td>
             </tr>
             <tr>
-              <td square-count>
+              <td>
                 <slot name="square-count"></slot>
               </td>
               <td>squares</td>
             </tr>
             <tr>
-              <td total-count><slot name="total-count"></slot></td>
+              <td>
+                <slot name="total-count"></slot>
+              </td>
               <td>total</td>
             </tr>
           </table>
@@ -78,7 +88,7 @@
         <span slot="circle-count">3</span>
         <span slot="square-count">7</span>
         <span slot="total-count">10</span>
-      </shape-count>
+      </shape-table>
     </section>
     <shape-ul>
       <template shadowrootmode="open">
