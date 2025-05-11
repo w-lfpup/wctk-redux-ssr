@@ -21,7 +21,8 @@ interface ShapeState {
 	shapeList: Shape[];
 }
 
-const initialShapeState: ShapeState = { squares: 0, circles: 0, shapeList: [] };
+const stateMap = document.querySelector('script[type=statemap]');
+const initialShapeState: ShapeState = JSON.parse(stateMap.textContent);
 
 const removeShape: RemoveShape = (shapes: Shape[], shape: Shape) => {
 	const index = shapes.lastIndexOf(shape);

@@ -18,74 +18,6 @@
       ]
     }
   </script>
-  <style>
-    html {
-      background-color: #fafafa;
-      font-family: monospace;
-      line-height: 1.5rem;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      border: 6px solid #434343;
-      border-start-start-radius: 4px;
-      border-start-end-radius: 4px;
-      border-bottom: none;
-      display: inline-block;
-      font-size: 1.8rem;
-      margin: 0;
-      padding: 16px;
-    }
-
-    h2>span:first-child {
-      color: #3478f5;
-    }
-
-    h2>span:last-child {
-      color: #f534db;
-    }
-
-    h2~p {
-      border: 6px solid #434343;
-      border-bottom: none;
-      border-start-end-radius: 4px;
-      margin: 0;
-      padding: 16px;
-    }
-
-    h2~p:last-child {
-      border: 6px solid #434343;
-      border-top: none;
-      border-radius: 0 0;
-      border-end-start-radius: 4px;
-      border-end-end-radius: 4px;
-      padding-top: 0;
-    }
-
-    p>span {
-      background-color: #efefef;
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    main>section {
-      align-items: flex-end;
-      display: flex;
-      justify-content: space-between;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -108,190 +40,62 @@
     <section>
       <shape-dials>
         <template shadowrootmode="closed">
-          <style>
-            :host {
-              user-select: none;
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-            }
-
-            button {
-              border: 6px solid #434343;
-              border-radius: 8px;
-              box-sizing: border-box;
-              cursor: pointer;
-              min-height: 40px;
-              min-width: 40px;
-            }
-
-            button:hover {
-              background-color: #878787;
-              color: #ffffff;
-            }
-
-            button:active {
-              border-color: #878787;
-              background-color: #434343;
-              color: #ffffff;
-            }
-
-            #circles {
-              color: #f534db;
-            }
-
-            #squares {
-              color: #3478f5;
-            }
-
-            #circles>button:hover,
-            #squares>button:hover {
-              border-color: #434343;
-              background-color: #f534db;
-            }
-
-            #squares>button:hover {
-              background-color: #3478f5;
-            }
-
-            #circles>button:active,
-            #squares>button:active {
-              background-color: #434343;
-              border-color: #f534db;
-            }
-
-            #squares>button:active {
-              border-color: #3478f5;
-            }
-
-            button:disabled,
-            #circles>button:disabled,
-            #squares>button:disabled {
-              color: #cdcdcd;
-              cursor: default;
-              background-color: #efefef;
-              border-color: #dedede;
-            }
-          </style>
-          <div id="circles">
-            <button>-</button>
+          <div>
+            <button action="decrement_circles">-</button>
             circles
-            <button>+</button>
+            <button action="increment_circles">+</button>
           </div>
-          <div id="squares">
-            <button>-</button>
+          <div>
+            <button action="decrement_squares">-</button>
             squares
-            <button>+</button>
+            <button action="increment_squares">+</button>
           </div>
-          <button>reset</button>
+          <button action="reset">reset</button>
         </template>
       </shape-dials>
       <shape-count>
         <template shadowrootmode="closed">
-          <style>
-            :host {
-              box-sizing: border-box;
-              border: 6px solid #434343;
-              border-radius: 4px;
-              padding: 12px;
-            }
-
-            tr:first-child>td:last-child {
-              color: #f534db;
-            }
-
-            tr:nth-child(2)>td:last-child {
-              color: #3478f5;
-            }
-
-            tr:last-child>td {
-              height: 30px;
-              vertical-align: bottom;
-            }
-          </style>
           <table>
             <tr>
-              <td>3</td>
+              <td>
+                <slot name="circle-count"></slot>
+              </td>
               <td>circles</td>
             </tr>
             <tr>
-              <td>7</td>
+              <td square-count>
+                <slot name="square-count"></slot>
+              </td>
               <td>squares</td>
             </tr>
             <tr>
-              <td>10</td>
+              <td total-count><slot name="total-count"></slot></td>
               <td>total</td>
             </tr>
           </table>
         </template>
+
+        <span slot="circle-count">3</span>
+        <span slot="square-count">7</span>
+        <span slot="total-count">10</span>
       </shape-count>
     </section>
-    <shape-list>
+    <shape-ul>
       <template shadowrootmode="open">
-        <style>
-          :host {
-            border: 6px solid #434343;
-            border-radius: 8px;
-            box-sizing: border-box;
-          }
-
-          ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-            min-height: 80px;
-            padding: 16px;
-            list-style-type: none;
-          }
-
-          .square,
-          .circle {
-            background-color: #3478f5;
-            box-sizing: border-box;
-            height: 36px;
-            position: relative;
-            width: 36px;
-          }
-
-          .circle {
-            background-color: #f534db;
-            border-radius: 50%;
-          }
-
-          .circle::after,
-          .square::after {
-            border: 4px solid #434343;
-            box-sizing: border-box;
-            content: "";
-            display: block;
-            height: 36px;
-            position: relative;
-            width: 36px;
-          }
-
-          .square::after {
-            left: 6px;
-            top: 6px;
-          }
-
-          .circle::after {
-            border-radius: 50%;
-            left: -6px;
-            top: -6px;
-          }
-        </style>
         <ul>
-          <li class="circle"></li>
-          <li class="square"></li>
-          <li class="square"></li>
-          <li class="circle"></li>
-          <li class="square"></li>
-          <li class="square"></li>
-          <li class="square"></li>
-          <li class="circle"></li>
-          <li class="square"></li>
+          <slot></slot>
         </ul>
       </template>
-    </shape-list>
+
+      <li class="circle">o</li>
+      <li class="square">[ ]</li>
+      <li class="square">[ ]</li>
+      <li class="circle">o</li>
+      <li class="square">[ ]</li>
+      <li class="square">[ ]</li>
+      <li class="square">[ ]</li>
+      <li class="circle">o</li>
+      <li class="square">[ ]</li>
+    </shape-ul>
   </main>
 </body>
