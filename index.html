@@ -5,25 +5,9 @@
     {
       "imports": {
         "@redux/tookit": "/scripts/deps/redux_bundled.js",
-        "wctk": "/scripts/deps/wctk_bundled.js"
+        "wctk": "/scripts/deps/wctk_bundled.js",
+        "datastore": "/scripts/datastore/mod.js"
       }
-    }
-  </script>
-  <script type="statemap">
-    {
-      "circles": 3,
-      "squares": 6,
-      "shapes": [
-        'circle',
-        'square',
-        'square',
-        'circle',
-        'square',
-        'square',
-        'square',
-        'circle',
-        'square',
-      ]
     }
   </script>
 </head>
@@ -33,15 +17,13 @@
       <span>WCTK</span> + <span>Redux</span>
     </h2>
     <p>
-      The example below demonstrates how to connect webcomponents
-      to a redux store using
+      The example below demonstrates how to subscribe webcomponents
+      to a redux datastore using
       <a href="https://github.com/w-lfpup/wctk-js/" target="_blank">the web component toolkit</a>.
     </p>
     <p>
-      The <span>shape-dials</span> component dispatches
-      actions to a datastore, while the <span>shape-list</span>
-      and <span>shape-count</span> components
-      listen for updates to the datastore.
+      The <span>shape-controls</span> component dispatches actions to a datastore, while the <span>shape-list</span>
+      and <span>shape-count</span> components listen for state updates from the datastore.
     </p>
   </header>
   <main>

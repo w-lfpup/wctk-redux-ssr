@@ -2,18 +2,17 @@
   store.ts
 
   This module creates and exports a redux store. It uses
-  one reducer to account for a list of circles and squares.
+  one reducer to tally a list of circles and squares.
 
   This is a vanilla redux store. Redux does NOT need any
-  modifications to work alongside Lit or webcomponents.
+  modifications to work alongside the WCTK or webcomponents
+  in general,.
 */
-
-import type { Reducer, Action } from '@reduxjs/toolkit';
 
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 type Shape = 'square' | 'circle';
-type RemoveShape = (state: Shape[], shape: Shape) => void;
+type RemoveShape = (shapeList: Shape[], shape: Shape) => void;
 
 interface ShapeState {
 	circles: number;
@@ -24,10 +23,10 @@ interface ShapeState {
 const stateMap = document.querySelector('script[type=statemap]');
 const initialShapeState: ShapeState = JSON.parse(stateMap.textContent);
 
-const removeShape: RemoveShape = (shapes: Shape[], shape: Shape) => {
-	const index = shapes.lastIndexOf(shape);
+const removeShape: RemoveShape = (shapeList: Shape[], shape: Shape) => {
+	const index = shapeList.lastIndexOf(shape);
 	if (index > -1) {
-		shapes.splice(index, 1);
+		shapeList.splice(index, 1);
 	}
 };
 

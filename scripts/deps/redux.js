@@ -1,1 +1,1 @@
-export * from '@reduxjs/toolkit';
+export { configureStore, createSlice } from '@reduxjs/toolkit';
