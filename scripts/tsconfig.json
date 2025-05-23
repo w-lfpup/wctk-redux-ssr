@@ -3,5 +3,6 @@
 		"lib": ["DOM", "ESNext"],
 		"module": "NodeNext",
 		"target": "ESNext",
+		"resolveJsonModule": true
 	}
 }
