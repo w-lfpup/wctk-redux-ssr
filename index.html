@@ -4,13 +4,38 @@
   <script type="importmap">
     {
       "imports": {
-        "@redux/tookit": "/scripts/deps/redux_bundled.js",
+        "@reduxjs/toolkit": "/scripts/deps/redux_bundled.js",
         "wctk": "/scripts/deps/wctk_bundled.js",
         "components": "/scripts/components/mod.js"
       }
     }
   </script>
+  <script>
+    process = {
+      env: {
+        NODE_ENV: "production"
+      }
+    }
+  </script>
+  <script type="statemap">
+    {
+      "circles": 3,
+      "squares": 7,
+      "shapeList": [
+        "circle",
+        "square",
+        "square",
+        "circle",
+        "square",
+        "square",
+        "square",
+        "circle",
+        "square"
+      ]
+    }
+  </script>
   <script type="module" src="/scripts/datastore/mod.js"></script>
+  <script type="module" src="/scripts/components/mod.js"></script>
 </head>
 <body>
   <header>
@@ -32,16 +57,16 @@
       <shape-controls>
         <template shadowrootmode="closed">
           <div>
-            <button action="decrement_circles">-</button>
+            <button action="shapes/decrement_circles">-</button>
             circles
-            <button action="increment_circles">+</button>
+            <button action="shapes/increment_circles">+</button>
           </div>
           <div>
-            <button action="decrement_squares">-</button>
+            <button action="shapes/decrement_squares">-</button>
             squares
-            <button action="increment_squares">+</button>
+            <button action="shapes/increment_squares">+</button>
           </div>
-          <button action="reset">reset</button>
+          <button action="shapes/reset">reset</button>
         </template>
       </shape-controls>
       <shape-table>
@@ -73,7 +98,7 @@
         <span slot="total-count">10</span>
       </shape-table>
     </section>
-    <shape-ul>
+    <shape-list>
       <template shadowrootmode="open">
         <ul>
           <slot></slot>
@@ -89,6 +114,6 @@
       <li class="square">[ ]</li>
       <li class="circle">o</li>
       <li class="square">[ ]</li>
-    </shape-ul>
+    </shape-list>
   </main>
 </body>

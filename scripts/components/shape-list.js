@@ -1,6 +1,6 @@
 import { Wc, Subscription } from "wctk";
 import { datastore, subscribe, unsubscribe } from "../datastore/mod.js";
-export class ShapeTable extends HTMLElement {
+export class ShapeList extends HTMLElement {
     #wc = new Wc({ host: this });
     #sc = new Subscription({
         host: this,
