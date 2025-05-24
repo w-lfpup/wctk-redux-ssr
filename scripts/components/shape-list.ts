@@ -4,7 +4,7 @@ import { datastore, subscribe, unsubscribe} from "../datastore/mod.js"
 export class ShapeList extends HTMLElement {
     #wc = new Wc({host: this});
     
-    #mc = new Microtask({target: this, callbacks: [this.#render]});
+    #mc = new Microtask({host: this, callbacks: [this.#render]});
 
     #sc = new Subscription({
         host: this,

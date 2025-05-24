@@ -17,7 +17,7 @@ export class ShapeControls extends HTMLElement {
             ["click", this.#clickHandler]
         ]
     });
-    #mc = new Microtask({ target: this, callbacks: [this.#render] });
+    #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #sc = new Subscription({
         host: this,
         callback: this.#mc.queue,

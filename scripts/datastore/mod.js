@@ -51,6 +51,7 @@ function subscribe(cb) {
     return datastore.subscribe(cb);
 }
 function unsubscribe(cb) {
-    cb();
+    if (cb)
+        cb();
 }
 export { datastore, subscribe, unsubscribe };

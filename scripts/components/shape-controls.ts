@@ -1,7 +1,6 @@
 import { Wc, Events, Microtask, Subscription, QuerySelector } from "wctk";
 import { datastore, subscribe, unsubscribe} from "../datastore/mod.js"
 
-
 export class ShapeControls extends HTMLElement {
     #wc = new Wc({host: this});
 
@@ -22,7 +21,7 @@ export class ShapeControls extends HTMLElement {
         ]
     });
 
-    #mc = new Microtask({target: this, callbacks: [this.#render]});
+    #mc = new Microtask({host: this, callbacks: [this.#render]});
 
     #sc = new Subscription({
         host: this,
@@ -46,7 +45,7 @@ export class ShapeControls extends HTMLElement {
             : squaresButton?.setAttribute('disabled', "");
     }
 
-    #clickHandler(e: PointerEvent) {
+    #clickHandler(e: Event) {
         let { target } = e;
         if (target instanceof HTMLElement) {
             let type = target.getAttribute("action");

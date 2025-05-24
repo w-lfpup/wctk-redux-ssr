@@ -14,7 +14,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import initialState from "../../state.json" with { type: "json"};
 
 // is not exported from redux toolkit
-type ListenerCallback = () => {};
+type ListenerCallback = () => void;
 
 type Shape = 'square' | 'circle';
 
@@ -67,8 +67,8 @@ function subscribe(cb: ListenerCallback): Unsubscribe {
 	return datastore.subscribe(cb);
 }
 
-function unsubscribe(cb: Unsubscribe): void {
-	cb();
+function unsubscribe(cb?: Unsubscribe): void {
+	if (cb) cb();
 }
 
 export type { ShapeState, Shape };
