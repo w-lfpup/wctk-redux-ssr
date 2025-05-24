@@ -1,0 +1,15 @@
+{
+	"circles": 3,
+	"squares": 7,
+	"shapeList": [
+		"circle",
+		"square",
+		"square",
+		"circle",
+		"square",
+		"square",
+		"square",
+		"circle",
+		"square"
+	]
+}

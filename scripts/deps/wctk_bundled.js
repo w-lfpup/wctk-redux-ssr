@@ -4,9 +4,8 @@ class Bind {
         for (let cb of callbacks) {
             if (cb instanceof Function) {
                 let name = cb.name;
-                if (name && !name.startsWith("#")) {
+                if (name && !name.startsWith("#"))
                     el[name] = cb.bind(el);
-                }
             }
         }
     }
@@ -101,6 +100,33 @@ class Subscription {
     }
 }
 
+class QuerySelector {
+    #params;
+    #queries;
+    constructor(params) {
+        this.#params = params;
+        this.#queries = getQueries(params);
+    }
+    refresh() {
+        this.#queries = getQueries(this.#params);
+    }
+    get(name) {
+        return this.#queries.get(name)?.[0];
+    }
+    getAll(name) {
+        return this.#queries.get(name);
+    }
+}
+function getQueries(params) {
+    let { target, selectors } = params;
+    let queries = new Map();
+    for (let [name, query] of selectors) {
+        const queried = target.querySelectorAll(query);
+        queries.set(name, queried);
+    }
+    return queries;
+}
+
 const shadowRootInitFallback = {
     mode: "closed",
 };
@@ -149,4 +175,4 @@ class Wc {
     }
 }
 
-export { Bind, Events, Microtask, Subscription, Wc };
+export { Bind, Events, Microtask, QuerySelector, Subscription, Wc };

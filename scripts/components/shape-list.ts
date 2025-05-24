@@ -3,6 +3,7 @@ import { datastore, subscribe, unsubscribe} from "../datastore/mod.js"
 
 export class ShapeList extends HTMLElement {
     #wc = new Wc({host: this});
+    
     #sc = new Subscription({
         host: this,
         callback: this.#update,
@@ -11,7 +12,7 @@ export class ShapeList extends HTMLElement {
     })
 
     #update() {
-        let state = datastore.getState()
+        let state = datastore.getState();
     }
 }
 

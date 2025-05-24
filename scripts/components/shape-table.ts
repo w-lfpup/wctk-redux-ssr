@@ -15,4 +15,3 @@ export class ShapeTable extends HTMLElement {
         let state = datastore.getState();
     }
 }
-

@@ -11,6 +11,7 @@
 
 import type { Unsubscribe } from "@reduxjs/toolkit";
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import initialState from "../../state.json" with { type: "json"};
 
 // is not exported from redux toolkit
 type ListenerCallback = () => {};
@@ -23,8 +24,7 @@ interface ShapeState {
 	shapeList: Shape[];
 }
 
-const stateMap = document.querySelector('script[type=statemap]');
-const initialShapeState: ShapeState = JSON.parse(stateMap.textContent);
+const initialShapeState: ShapeState = initialState as ShapeState;
 
 function removeShape(shapeList: Shape[], shape: Shape) {
 	const index = shapeList.lastIndexOf(shape);

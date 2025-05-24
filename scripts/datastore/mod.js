@@ -9,8 +9,8 @@
   in general,.
 */
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-const stateMap = document.querySelector('script[type=statemap]');
-const initialShapeState = JSON.parse(stateMap.textContent);
+import initialState from "../../state.json" with { type: "json" };
+const initialShapeState = initialState;
 function removeShape(shapeList, shape) {
     const index = shapeList.lastIndexOf(shape);
     if (index > -1) {
