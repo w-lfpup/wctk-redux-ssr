@@ -10,7 +10,6 @@
 */
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import initialState from "../../state.json" with { type: "json" };
-const initialShapeState = initialState;
 function removeShape(shapeList, shape) {
     const index = shapeList.lastIndexOf(shape);
     if (index > -1) {
@@ -20,7 +19,7 @@ function removeShape(shapeList, shape) {
 ;
 const shapeSlice = createSlice({
     name: 'shapes',
-    initialState: initialShapeState,
+    initialState: initialState,
     reducers: {
         reset: state => {
             state.circles = 0;

@@ -24,8 +24,6 @@ interface ShapeState {
 	shapeList: Shape[];
 }
 
-const initialShapeState: ShapeState = initialState as ShapeState;
-
 function removeShape(shapeList: Shape[], shape: Shape) {
 	const index = shapeList.lastIndexOf(shape);
 	if (index > -1) {
@@ -35,7 +33,7 @@ function removeShape(shapeList: Shape[], shape: Shape) {
 
 const shapeSlice = createSlice({
 	name: 'shapes',
-	initialState: initialShapeState,
+	initialState: initialState as ShapeState,
 	reducers: {
 		reset: state => { 
 			state.circles = 0;
