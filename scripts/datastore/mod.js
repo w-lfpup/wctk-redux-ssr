@@ -47,9 +47,7 @@ const shapeSlice = createSlice({
 const datastore = configureStore({
     reducer: shapeSlice.reducer
 });
-function subscribe(cb) {
-    return datastore.subscribe(cb);
-}
+const { subscribe } = datastore;
 function unsubscribe(cb) {
     if (cb)
         cb();

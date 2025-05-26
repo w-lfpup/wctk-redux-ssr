@@ -63,9 +63,7 @@ const datastore = configureStore({
 	reducer: shapeSlice.reducer
 });
 
-function subscribe(cb: ListenerCallback): Unsubscribe {
-	return datastore.subscribe(cb);
-}
+const {subscribe} = datastore;
 
 function unsubscribe(cb?: Unsubscribe): void {
 	if (cb) cb();
