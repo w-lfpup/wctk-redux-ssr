@@ -8,7 +8,7 @@ export class ShapeList extends HTMLElement {
 
     #sc = new Subscription({
         host: this,
-        callback: this.#mc.queue,
+        callbacks: [this.#mc.queue],
         connected: true,
         subscribe,
         unsubscribe

@@ -20,13 +20,14 @@ export class ShapeControls extends HTMLElement {
     #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #sc = new Subscription({
         host: this,
-        callback: this.#mc.queue,
+        callbacks: [this.#mc.queue],
         connected: true,
         subscribe,
         unsubscribe
     });
     #render() {
         let state = datastore.getState();
+        console.log(state);
         let circleButton = this.#qc.get("decrement_circles");
         state.circles
             ? circleButton?.removeAttribute('disabled')

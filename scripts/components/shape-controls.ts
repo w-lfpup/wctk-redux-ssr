@@ -25,7 +25,7 @@ export class ShapeControls extends HTMLElement {
 
     #sc = new Subscription({
         host: this,
-        callback: this.#mc.queue,
+        callbacks: [this.#mc.queue],
         connected: true,
         subscribe,
         unsubscribe
@@ -33,7 +33,8 @@ export class ShapeControls extends HTMLElement {
 
     #render() {
         let state = datastore.getState();
-                
+        console.log(state);
+        
         let circleButton = this.#qc.get("decrement_circles");
         state.circles
             ? circleButton?.removeAttribute('disabled')

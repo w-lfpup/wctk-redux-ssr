@@ -14,7 +14,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import initialState from "../../state.json" with { type: "json"};
 
 // is not exported from redux toolkit
-type ListenerCallback = () => void;
+export type ListenerCallback = () => void;
 
 type Shape = 'square' | 'circle';
 

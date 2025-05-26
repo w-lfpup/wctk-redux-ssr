@@ -5,7 +5,7 @@ export class ShapeList extends HTMLElement {
     #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #sc = new Subscription({
         host: this,
-        callback: this.#mc.queue,
+        callbacks: [this.#mc.queue],
         connected: true,
         subscribe,
         unsubscribe
