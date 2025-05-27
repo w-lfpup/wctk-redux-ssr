@@ -5,8 +5,8 @@ export class ShapeControls extends HTMLElement {
     #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #ec = new Events({
         host: this,
-        target: this.#wc.shadowRoot,
         connected: true,
+        target: this.#wc.shadowRoot,
         callbacks: [
             ["click", this.#clickHandler]
         ]

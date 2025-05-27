@@ -8,8 +8,8 @@ export class ShapeControls extends HTMLElement {
 
     #ec = new Events({
         host: this,
-        target: this.#wc.shadowRoot,
         connected: true,
+        target: this.#wc.shadowRoot,
         callbacks: [
             ["click", this.#clickHandler]
         ]
@@ -53,4 +53,3 @@ export class ShapeControls extends HTMLElement {
         }
     }
 }
-

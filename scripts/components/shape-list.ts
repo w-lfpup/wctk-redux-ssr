@@ -16,21 +16,28 @@ export class ShapeList extends HTMLElement {
 
     #render() {
         let state = getState();
-        console.log(this.children);
 
-        // 1:1 li to shape list
+        let length = Math.min(state.shapeList.length, this.children.length);
+        let children = Array.from(this.children);
+        
+        while (state.shapeList.length < children.length) {
+            let child = children.pop();
+            if (child) this.removeChild(child);           
+        }
 
-        // if same length?
-        //  check every item for being the correct item
+        for (let index = length; index < state.shapeList.length; index++) {
+            let shape = state.shapeList[index];
+            let listEl = document.createElement("li");
+            listEl.setAttribute("shape", shape);
+            this.appendChild(listEl);
+        }
 
-        // if new list is longer
-        //   check for correctness of children
-        //   then add children
+        for (let index = length - 1; 0 < index; index--) {
+            const shape = state.shapeList[index];
+            const child = children[index];
+            const shapeAttr = child.getAttribute("shape");
 
-        // if new list is shorter
-        //   walk back from
-
-        // get least lengthed index
-        // iterate through and change 
+            if (shape !== shapeAttr) child.setAttribute("shape", shape);
+        }
     }
 }

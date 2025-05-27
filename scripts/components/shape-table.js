@@ -5,8 +5,8 @@ export class ShapeTable extends HTMLElement {
     #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #sc = new Subscription({
         host: this,
-        callbacks: [this.#mc.queue],
         connected: true,
+        callbacks: [this.#mc.queue],
         subscribe,
         unsubscribe
     });

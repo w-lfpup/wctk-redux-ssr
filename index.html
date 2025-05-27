@@ -18,6 +18,21 @@
     }
   </script>
   <script type="module" src="./mod.js"></script>
+  <style>
+    li {
+      list-style: none;
+      padding: none;
+      margin: none;
+    }
+    [shape=circle], [shape=square] {
+      block-size: 2rem;
+      inline-size: 2rem;
+      border: 2px solid black;
+    }
+    [shape=circle] {
+      border-radius: 2rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -39,16 +54,16 @@
       <shape-controls>
         <template shadowrootmode="closed">
           <div>
-            <button action="shapes/decrement_circles">-</button>
+            <button action="shapes/decrement_circles" tabindex="0">-</button>
             circles
-            <button action="shapes/increment_circles">+</button>
+            <button action="shapes/increment_circles" tabindex="0">+</button>
           </div>
           <div>
-            <button action="shapes/decrement_squares">-</button>
+            <button action="shapes/decrement_squares" tabindex="0">-</button>
             squares
-            <button action="shapes/increment_squares">+</button>
+            <button action="shapes/increment_squares" tabindex="0">+</button>
           </div>
-          <button action="shapes/reset">reset</button>
+          <button action="shapes/reset" tabindex="0">reset</button>
         </template>
       </shape-controls>
       <shape-table>
@@ -87,15 +102,15 @@
         </ul>
       </template>
 
-      <li shape=circle>o</li>
-      <li shape=square>[ ]</li>
-      <li shape=square>[ ]</li>
-      <li shape=circle>o</li>
-      <li shape=square>[ ]</li>
-      <li shape=square>[ ]</li>
-      <li shape=square>[ ]</li>
-      <li shape=circle>o</li>
-      <li shape=square>[ ]</li>
+      <li shape=circle></li>
+      <li shape=square></li>
+      <li shape=square></li>
+      <li shape=circle></li>
+      <li shape=square></li>
+      <li shape=square></li>
+      <li shape=square></li>
+      <li shape=circle></li>
+      <li shape=square></li>
     </shape-list>
   </main>
 </body>
