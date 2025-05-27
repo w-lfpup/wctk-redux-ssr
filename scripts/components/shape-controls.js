@@ -1,14 +1,8 @@
 import { Wc, Events, Microtask, Subscription, QuerySelector } from "wctk";
-import { datastore, subscribe, unsubscribe } from "../datastore/mod.js";
+import { dispatch, getState, subscribe, unsubscribe } from "../datastore/mod.js";
 export class ShapeControls extends HTMLElement {
     #wc = new Wc({ host: this });
-    #qc = new QuerySelector({
-        target: this.#wc.shadowRoot,
-        selectors: [
-            ["decrement_circles", "[action='shapes/decrement_circles']"],
-            ["decrement_squares", "[action='shapes/decrement_squares']"]
-        ]
-    });
+    #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #ec = new Events({
         host: this,
         target: this.#wc.shadowRoot,
@@ -17,7 +11,6 @@ export class ShapeControls extends HTMLElement {
             ["click", this.#clickHandler]
         ]
     });
-    #mc = new Microtask({ host: this, callbacks: [this.#render] });
     #sc = new Subscription({
         host: this,
         callbacks: [this.#mc.queue],
@@ -25,9 +18,15 @@ export class ShapeControls extends HTMLElement {
         subscribe,
         unsubscribe
     });
+    #qc = new QuerySelector({
+        target: this.#wc.shadowRoot,
+        selectors: [
+            ["decrement_circles", "[action='shapes/decrement_circles']"],
+            ["decrement_squares", "[action='shapes/decrement_squares']"]
+        ]
+    });
     #render() {
-        let state = datastore.getState();
-        console.log(state);
+        let state = getState();
         let circleButton = this.#qc.get("decrement_circles");
         state.circles
             ? circleButton?.removeAttribute('disabled')
@@ -42,7 +41,7 @@ export class ShapeControls extends HTMLElement {
         if (target instanceof HTMLElement) {
             let type = target.getAttribute("action");
             if (type)
-                datastore.dispatch({ type });
+                dispatch({ type });
         }
     }
 }

@@ -63,11 +63,15 @@ const datastore = configureStore({
 	reducer: shapeSlice.reducer
 });
 
-const {subscribe} = datastore;
+// this is a minimal API for web  components
+// redux does us a solid and binds the methods
+// of a datastore to the datastore itself
+const {subscribe, getState, dispatch} = datastore;
 
+// required to remove subscriptions with the result of `subscribe()`
 function unsubscribe(cb?: Unsubscribe): void {
 	if (cb) cb();
 }
 
 export type { ShapeState, Shape };
-export { datastore, subscribe, unsubscribe };
+export { datastore, subscribe, getState, dispatch, unsubscribe };

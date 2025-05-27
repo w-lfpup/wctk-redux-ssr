@@ -56,28 +56,28 @@
           <table>
             <tr>
               <td>
-                <slot name="circle-count"></slot>
+                <slot name="circle_count"></slot>
               </td>
               <td>circles</td>
             </tr>
             <tr>
               <td>
-                <slot name="square-count"></slot>
+                <slot name="square_count"></slot>
               </td>
               <td>squares</td>
             </tr>
             <tr>
               <td>
-                <slot name="total-count"></slot>
+                <slot name="total"></slot>
               </td>
               <td>total</td>
             </tr>
           </table>
         </template>
 
-        <span slot="circle-count">3</span>
-        <span slot="square-count">7</span>
-        <span slot="total-count">10</span>
+        <span slot="circle_count">3</span>
+        <span slot="square_count">7</span>
+        <span slot="total">10</span>
       </shape-table>
     </section>
     <shape-list>
@@ -87,15 +87,15 @@
         </ul>
       </template>
 
-      <li class="circle">o</li>
-      <li class="square">[ ]</li>
-      <li class="square">[ ]</li>
-      <li class="circle">o</li>
-      <li class="square">[ ]</li>
-      <li class="square">[ ]</li>
-      <li class="square">[ ]</li>
-      <li class="circle">o</li>
-      <li class="square">[ ]</li>
+      <li shape=circle>o</li>
+      <li shape=square>[ ]</li>
+      <li shape=square>[ ]</li>
+      <li shape=circle>o</li>
+      <li shape=square>[ ]</li>
+      <li shape=square>[ ]</li>
+      <li shape=square>[ ]</li>
+      <li shape=circle>o</li>
+      <li shape=square>[ ]</li>
     </shape-list>
   </main>
 </body>
