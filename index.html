@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 
 <head>
+  <script>
+    process = {
+      env: {
+        NODE_ENV: "production"
+      }
+    }
+  </script>
   <script type="importmap">
     {
       "imports": {
@@ -10,14 +17,8 @@
       }
     }
   </script>
-  <script>
-    process = {
-      env: {
-        NODE_ENV: "production"
-      }
-    }
-  </script>
   <script type="module" src="./mod.js"></script>
+
   <style>
     li {
       list-style: none;
@@ -90,27 +91,33 @@
           </table>
         </template>
 
-        <span slot="circle_count">3</span>
-        <span slot="square_count">7</span>
+        <span slot="circle_count">4</span>
+        <span slot="square_count">6</span>
         <span slot="total">10</span>
       </shape-table>
     </section>
     <shape-list>
-      <template shadowrootmode="open">
+      <template shadowrootmode="closed">
+        <style>
+          ul {
+            padding: 0;
+          }
+        </style>
         <ul>
           <slot></slot>
         </ul>
       </template>
 
-      <li shape=circle></li>
-      <li shape=square></li>
       <li shape=square></li>
       <li shape=circle></li>
       <li shape=square></li>
       <li shape=square></li>
-      <li shape=square></li>
+      <li shape=circle></li>
       <li shape=circle></li>
       <li shape=square></li>
+      <li shape=square></li>
+      <li shape=square></li>
+      <li shape=circle></li>
     </shape-list>
   </main>
 </body>

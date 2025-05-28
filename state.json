@@ -1,15 +1,16 @@
 {
-	"circles": 3,
-	"squares": 7,
+	"circles": 4,
+	"squares": 6,
 	"shapeList": [
-		"circle",
-		"square",
 		"square",
 		"circle",
 		"square",
 		"square",
-		"square",
 		"circle",
-		"square"
+		"circle",
+		"square",
+		"square",
+		"square",
+		"circle"
 	]
 }
