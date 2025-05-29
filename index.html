@@ -66,10 +66,10 @@
 						}
 
 						button {
+							background: transparent;
 							border: var(--border, initial);
 							border-radius: var(--border-radius);
 							font-family: monospace;
-							background: transparent;
 							min-inline-size: 2.5rem;
 							min-block-size: 2.5rem;
 							cursor: pointer;
@@ -84,17 +84,17 @@
 						}
 					</style>
 					<div>
-						<button action="shapes/decrement_circles" tabindex="0">-</button>
+						<button action="shapes/decrement_circles">-</button>
 						circles
-						<button action="shapes/increment_circles" tabindex="0">+</button>
+						<button action="shapes/increment_circles">+</button>
 					</div>
 					<div>
-						<button action="shapes/decrement_squares" tabindex="0">-</button>
+						<button action="shapes/decrement_squares">-</button>
 						squares
-						<button action="shapes/increment_squares" tabindex="0">+</button>
+						<button action="shapes/increment_squares">+</button>
 					</div>
 					<div>
-						<button type="reset" action="shapes/reset" tabindex="0">reset</button>
+						<button type="reset" action="shapes/reset">reset</button>
 					</div>
 				</template>
 			</shape-controls>
@@ -120,7 +120,7 @@
 						background: var(--blue);
 					}
 
-					::slotted([shape=circle]) {
+					::slotted([shape="circle"]) {
 						background: var(--pink);
 						border-radius: 2rem;
 					}
@@ -137,7 +137,7 @@
 						border: var(--border);
 					}
 
-					::slotted([shape=circle])::after {
+					::slotted([shape="circle"])::after {
 						border-radius: 2rem;
 					}
 				</style>
@@ -146,16 +146,16 @@
 				</ul>
 			</template>
 
-			<li shape=square></li>
-			<li shape=circle></li>
-			<li shape=square></li>
-			<li shape=square></li>
-			<li shape=circle></li>
-			<li shape=circle></li>
-			<li shape=square></li>
-			<li shape=square></li>
-			<li shape=square></li>
-			<li shape=circle></li>
+			<li shape="square"></li>
+			<li shape="circle"></li>
+			<li shape="square"></li>
+			<li shape="square"></li>
+			<li shape="circle"></li>
+			<li shape="circle"></li>
+			<li shape="square"></li>
+			<li shape="square"></li>
+			<li shape="square"></li>
+			<li shape="circle"></li>
 		</shape-list>
 		<shape-table>
 			<template shadowrootmode="closed">

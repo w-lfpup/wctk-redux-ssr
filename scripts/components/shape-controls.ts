@@ -28,8 +28,7 @@ export class ShapeControls extends HTMLElement {
         querySelector: [
             "[action='shapes/decrement_circles']",
             "[action='shapes/decrement_squares']"
-        ],
-        querySelectorAll: [],
+        ]
     });
 
     #render() {
