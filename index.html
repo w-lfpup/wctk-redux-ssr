@@ -96,51 +96,6 @@
           </div>
         </template>
       </shape-controls>
-      <shape-table>
-        <template shadowrootmode="closed">
-          <style>
-            table {
-              border-spacing: 2ch 0ch;
-              border-collapse: collapse;
-            }
-
-            td:last-child {
-              padding-inline-start: 2ch;
-            }
-            
-            ::slotted([slot="circle_count"]) {
-              color: var(--pink, inherit);
-            }
-            ::slotted([slot="square_count"]) {
-              color: var(--blue, inherit);
-            }
-          </style>
-          <table>
-            <tr>
-              <td>circles</td>
-              <td>
-                <slot name="circle_count"></slot>
-              </td>
-            </tr>
-            <tr>
-              <td>squares</td>
-              <td>
-                <slot name="square_count"></slot>
-              </td>
-            </tr>
-            <tr>
-              <td>total</td>
-              <td>
-                <slot name="total"></slot>
-              </td>
-            </tr>
-          </table>
-        </template>
-
-        <span slot="circle_count">4</span>
-        <span slot="square_count">6</span>
-        <span slot="total">10</span>
-      </shape-table>
     </section>
     <shape-list>
       <template shadowrootmode="closed">
@@ -212,5 +167,50 @@
       <li shape=square></li>
       <li shape=circle></li>
     </shape-list>
+    <shape-table>
+        <template shadowrootmode="closed">
+          <style>
+            table {
+              border-spacing: 2ch 0ch;
+              border-collapse: collapse;
+            }
+
+            td:last-child {
+              padding-inline-start: 2ch;
+            }
+            
+            ::slotted([slot="circle_count"]) {
+              color: var(--pink, inherit);
+            }
+            ::slotted([slot="square_count"]) {
+              color: var(--blue, inherit);
+            }
+          </style>
+          <table>
+            <tr>
+              <td>circles</td>
+              <td>
+                <slot name="circle_count"></slot>
+              </td>
+            </tr>
+            <tr>
+              <td>squares</td>
+              <td>
+                <slot name="square_count"></slot>
+              </td>
+            </tr>
+            <tr>
+              <td>total</td>
+              <td>
+                <slot name="total"></slot>
+              </td>
+            </tr>
+          </table>
+        </template>
+
+        <span slot="circle_count">4</span>
+        <span slot="square_count">6</span>
+        <span slot="total">10</span>
+      </shape-table>
   </main>
 </body>

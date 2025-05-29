@@ -20,18 +20,19 @@ export class ShapeControls extends HTMLElement {
     });
     #qc = new QuerySelector({
         target: this.#wc.shadowRoot,
-        selectors: [
-            ["decrement_circles", "[action='shapes/decrement_circles']"],
-            ["decrement_squares", "[action='shapes/decrement_squares']"]
-        ]
+        querySelector: [
+            "[action='shapes/decrement_circles']",
+            "[action='shapes/decrement_squares']"
+        ],
+        querySelectorAll: [],
     });
     #render() {
         let state = getState();
-        let circleButton = this.#qc.get("decrement_circles");
+        let circleButton = this.#qc.get("[action='shapes/decrement_circles']");
         state.circles
             ? circleButton?.removeAttribute('disabled')
             : circleButton?.setAttribute('disabled', "");
-        let squaresButton = this.#qc.get("decrement_squares");
+        let squaresButton = this.#qc.get("[action='shapes/decrement_squares']");
         state.squares
             ? squaresButton?.removeAttribute('disabled')
             : squaresButton?.setAttribute('disabled', "");
