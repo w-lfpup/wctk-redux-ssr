@@ -20,17 +20,33 @@
   <script type="module" src="./mod.js"></script>
 
   <style>
-    li {
-      list-style: none;
-      padding: none;
-      margin: none;
+    :root {
+      font-family: monospace;
+      line-height: 1.5rem;
     }
-    [shape=circle], [shape=square] {
-      block-size: 2rem;
-      inline-size: 2rem;
-      border: 2px solid black;
-    }
+
     [shape=circle] {
+      background: pink;
+      block-size: 3rem;
+      inline-size: 3rem;
+      border-radius: 2rem;
+    }
+    [shape=square] {
+      background: blue;
+      block-size: 3rem;
+      inline-size: 3rem;
+    }
+    [shape=circle]::after, [shape=square]::after {
+      content: "";
+      display: block;
+      box-sizing: border-box;
+      inset-inline-start: 0;
+      inset-block-start: 0;
+      block-size: 3rem;
+      inline-size: 3rem;
+      border: 4px solid black;
+    }
+    [shape=circle]::after {
       border-radius: 2rem;
     }
   </style>
