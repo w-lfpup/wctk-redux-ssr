@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 8px;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "shape-controls shape-table"
+        "shape-list shape-list"
+        "footer footer";
+}
+
+header {
+    grid-area: header;
+}
+
+shape-controls {
+    grid-area: shape-controls;
+}
+
+shape-table {
+    grid-area: shape-table;
+}
+
+shape-list {
+    grid-area: shape-list;
+}
+
+footer {
+    grid-area: footer;
+}

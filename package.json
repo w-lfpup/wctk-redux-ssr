@@ -11,7 +11,7 @@
   "author": "w-flpup",
   "type": "module",
   "scripts": {
-    "build": "npx tsc --p scripts/",
+    "build": "npx tsc --p www/",
     "bundle": "rollup --config rollup.config.js"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import { Wc, Microtask, Subscription } from "wctk";
-import { getState, subscribe, unsubscribe } from "../datastore/mod.js";
+import { getState, subscribe, unsubscribe } from "datastore";
 export class ShapeList extends HTMLElement {
     #wc = new Wc({ host: this });
     #mc = new Microtask({ host: this, callbacks: [this.#render] });
