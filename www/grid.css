@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    padding: 8px;
     min-height: 100dvh;
     display: grid;
     grid-template-areas:
@@ -8,6 +7,7 @@ body {
         "shape-controls shape-table"
         "shape-list shape-list"
         "footer footer";
+    grid-auto-rows: min-content;
 }
 
 header {
