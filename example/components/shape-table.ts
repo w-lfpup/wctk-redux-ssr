@@ -1,5 +1,5 @@
 import { Wc, Microtask, Subscription } from "wctk";
-import { getState, subscribe, unsubscribe} from "../datastore/datastore.js";
+import { getState, subscribe, unsubscribe} from "../datastore.js";
 
 export class ShapeTable extends HTMLElement {
     #wc = new Wc({host: this});

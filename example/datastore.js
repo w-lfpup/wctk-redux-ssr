@@ -8,7 +8,8 @@
   modifications to work with web components or the WCTK.
 */
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import initialState from "../state.json" with { type: "json" };
+// Load initial state!
+import initialState from "./state.json" with { type: "json" };
 function removeShape(shapeList, shape) {
     const index = shapeList.lastIndexOf(shape);
     if (index > -1) {

@@ -2,9 +2,9 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default [
     {
-        input: "www/scripts/deps/redux.js",
+        input: "example/deps/redux.js",
         output: {
-            file: "www/scripts/deps/redux_bundled.js",
+            file: "example/deps/redux_bundled.js",
             format: "esm"
         },
         plugins: [
@@ -12,9 +12,9 @@ export default [
         ]
     },
     {
-        input: "www/scripts/deps/wctk.js",
+        input: "example/deps/wctk.js",
         output: {
-            file: "www/scripts/deps/wctk_bundled.js",
+            file: "example/deps/wctk_bundled.js",
             format: "esm"
         },
         plugins: [

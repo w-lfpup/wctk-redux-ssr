@@ -4,7 +4,6 @@
 		"module": "NodeNext",
 		"target": "ESNext",
 		"strict": true,
-		"paths": { "datastore": ["./datastore/datastore.ts"] },
 		"resolveJsonModule": true
 	}
 }

@@ -11,7 +11,8 @@
 import type { Unsubscribe } from "@reduxjs/toolkit";
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-import initialState from "../state.json" with { type: "json"};
+// Load initial state!
+import initialState from "./state.json" with { type: "json"};
 
 // is not exported from redux toolkit
 export type ListenerCallback = () => void;

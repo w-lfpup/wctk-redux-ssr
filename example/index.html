@@ -1,24 +1,9 @@
 <!DOCTYPE html>
+<html lang="us-en">
 
 <head>
-	<script>
-		process = {
-			env: {
-				NODE_ENV: "production"
-			}
-		}
-	</script>
-	<script type="importmap">
-    {
-      "imports": {
-			"@reduxjs/toolkit": "/www/deps/redux_bundled.js",
-			"wctk": "/www/deps/wctk_bundled.js",
-			"datastore": "/www/datastore/datastore.js"
-		}
-    }
-	</script>
-	<script type="module" src="./mod.js"></script>
-
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<style>
 		:root {
 			--blue: #3478f5;
@@ -38,8 +23,90 @@
 		[redux] {
 			color: var(--pink);
 		}
+
+		body {
+			margin: 0;
+			padding: 2rem;
+			box-sizing: border-box;
+			min-block-size: 100dvh;
+			display: grid;
+			grid-template-areas:
+				"header header"
+				"shape-table shape-controls"
+				"shape-list shape-list"
+				"footer footer";
+			grid-template-rows: min-content min-content auto min-content;
+			gap: 2rem;
+		}
+
+		header {
+			grid-area: header;
+		}
+
+		h1 {
+			margin-block-start: 0;
+		}
+
+		shape-controls {
+			grid-area: shape-controls;
+			align-self: start;
+			justify-self: end;
+		}
+
+		shape-table {
+			grid-area: shape-table;
+			align-self: end;
+		}
+
+		shape-list {
+			grid-area: shape-list;
+		}
+
+		footer {
+			grid-area: footer;
+			align-self: end;
+		}
+
+		@media (min-width: 780px) {
+			body {
+				grid-template-areas:
+					"header      shape-controls shape-list"
+					"header      .              shape-list"
+					"shape-table .              shape-list"
+					"footer      footer         footer";
+
+				grid-template-columns: fit-content(25%) fit-content(100%) auto;
+				grid-template-rows: auto auto auto min-content;
+			}
+
+			header {
+				max-inline-size: 40ch;
+			}
+
+			shape-controls {
+				justify-self: start;
+			}
+		}
 	</style>
-	<link rel="stylesheet" href="./grid.css"></style>
+	<!-- required for redux -->
+	<script>
+		process = {
+			env: {
+				NODE_ENV: "production"
+			}
+		}
+	</script>
+	<script type="importmap">
+			{
+			"imports": {
+					"@reduxjs/toolkit": "/example/deps/redux_bundled.js",
+					"wctk": "/example/deps/wctk_bundled.js",
+					"datastore": "/example/datastore/datastore.js"
+				}
+			}
+		</script>
+	<script type="module" src="./mod.js"></script>
+
 </head>
 
 <body>
@@ -53,7 +120,8 @@
 			<a href="https://github.com/w-lfpup/wctk-js/" target="_blank">the web component toolkit</a>.
 		</p>
 		<p>
-			The <span>shape-controls</span> component dispatches actions to a datastore, while the <span>shape-list</span>
+			The <span>shape-controls</span> component dispatches actions to a datastore, while the
+			<span>shape-list</span>
 			and <span>shape-count</span> components listen for state updates from the datastore.
 		</p>
 	</header>
@@ -72,6 +140,10 @@
 					min-inline-size: 2.5rem;
 					min-block-size: 2.5rem;
 					cursor: pointer;
+				}
+
+				button:disabled {
+					opacity: 0.1;
 				}
 
 				button[type=reset] {
@@ -146,6 +218,7 @@
 		<template shadowrootmode="closed">
 			<style>
 				ul {
+					margin: 0;
 					padding: 0;
 					list-style: none;
 				}
@@ -200,5 +273,9 @@
 		<li shape="square"></li>
 		<li shape="circle"></li>
 	</shape-list>
-	<footer><hr></footer>
+	<footer>
+		<hr>
+	</footer>
 </body>
+
+</html>
