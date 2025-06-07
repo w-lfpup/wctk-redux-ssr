@@ -1,10 +1,10 @@
 import { Wc, Microtask, Subscription } from "wctk";
-import { getState, subscribe, unsubscribe} from "../datastore.js";
+import { getState, subscribe, unsubscribe } from "../datastore.js";
 
 export class ShapeList extends HTMLElement {
-    #wc = new Wc({host: this});
-    
-    #mc = new Microtask({host: this, callbacks: [this.#render]});
+    #wc = new Wc({ host: this });
+
+    #mc = new Microtask({ host: this, callbacks: [this.#render] });
 
     #sc = new Subscription({
         host: this,
@@ -19,11 +19,11 @@ export class ShapeList extends HTMLElement {
 
         let length = Math.min(state.shapeList.length, this.children.length);
         let children = Array.from(this.children);
-        
+
         // remove nodes
         while (state.shapeList.length < children.length) {
             let child = children.pop();
-            if (child) this.removeChild(child);           
+            if (child) this.removeChild(child);
         }
 
         // update nodes

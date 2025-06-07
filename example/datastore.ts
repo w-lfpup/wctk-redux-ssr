@@ -11,10 +11,10 @@
 import type { Unsubscribe } from "@reduxjs/toolkit";
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-// Load initial state!
+// EASY TO MISS! Load initial state!
 import initialState from "./state.json" with { type: "json"};
 
-// is not exported from redux toolkit
+// Type is not exported from redux toolkit
 export type ListenerCallback = () => void;
 
 type Shape = 'square' | 'circle';
@@ -36,7 +36,7 @@ const shapeSlice = createSlice({
 	name: 'shapes',
 	initialState: initialState as ShapeState,
 	reducers: {
-		reset: state => { 
+		reset: state => {
 			state.circles = 0;
 			state.squares = 0;
 			state.shapeList = [];
@@ -64,13 +64,10 @@ const datastore = configureStore({
 	reducer: shapeSlice.reducer
 });
 
-// This is a minimal API for web components.
-//
-// Redux does us a solid and binds the methods
-// of a datastore to the datastore itself
-const {subscribe, getState, dispatch} = datastore;
+// This is a minimal redux API for web components
+const { subscribe, getState, dispatch } = datastore;
 
-// required to remove subscriptions with the result of `subscribe()`
+// Required for WCTK to remove subscriptions with the result of `subscribe()`
 function unsubscribe(cb?: Unsubscribe): void {
 	if (cb) cb();
 }

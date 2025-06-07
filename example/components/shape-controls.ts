@@ -27,22 +27,30 @@ export class ShapeControls extends HTMLElement {
         target: this.#wc.shadowRoot,
         querySelector: [
             "[action='shapes/decrement_circles']",
-            "[action='shapes/decrement_squares']"
+            "[action='shapes/decrement_squares']",
+            "[type=reset]"
         ]
     });
 
     #render() {
         let state = getState();
 
+        let { circles, squares } = state;
+
         let circleButton = this.#qc.get("[action='shapes/decrement_circles']");
-        state.circles
+        circles
             ? circleButton?.removeAttribute('disabled')
             : circleButton?.setAttribute('disabled', "");
 
         let squaresButton = this.#qc.get("[action='shapes/decrement_squares']");
-        state.squares
+        squares
             ? squaresButton?.removeAttribute('disabled')
             : squaresButton?.setAttribute('disabled', "");
+
+        let resetButton = this.#qc.get("[type=reset]");
+        (circles + squares)
+            ? resetButton?.removeAttribute('disabled')
+            : resetButton?.setAttribute('disabled', "");
     }
 
     #clickHandler(e: Event) {

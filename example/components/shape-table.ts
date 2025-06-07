@@ -1,10 +1,10 @@
 import { Wc, Microtask, Subscription } from "wctk";
-import { getState, subscribe, unsubscribe} from "../datastore.js";
+import { getState, subscribe, unsubscribe } from "../datastore.js";
 
 export class ShapeTable extends HTMLElement {
-    #wc = new Wc({host: this});
+    #wc = new Wc({ host: this });
 
-    #mc = new Microtask({host: this, callbacks: [this.#render]});
+    #mc = new Microtask({ host: this, callbacks: [this.#render] });
 
     #sc = new Subscription({
         host: this,
@@ -19,7 +19,7 @@ export class ShapeTable extends HTMLElement {
 
         for (let index = 0; index < this.children.length; index++) {
             let child = this.children[index];
-            
+
             let slot = child.getAttribute("slot");
             if ("circle_count" === slot)
                 child.textContent = state.circles.toString();
