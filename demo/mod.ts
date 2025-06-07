@@ -1,4 +1,4 @@
-import "./datastore.js";
+import "datastore";
 
 import { ShapeControls } from "./components/shape-controls.js";
 import { ShapeTable } from "./components/shape-table.js";
