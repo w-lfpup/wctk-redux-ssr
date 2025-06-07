@@ -6,22 +6,17 @@
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<style>
 		:root {
+			color-scheme: light dark;
+
 			--blue: #3478f5;
 			--pink: #f534db;
 			--dark-gray: #434343;
-			--border: 4px solid var(--dark-gray);
+			--light-gray: #EFEFEF;
+			--border: 4px solid light-dark(var(--dark-gray), var(--light-gray));
 			--border-radius: 4px;
 
 			font-family: monospace;
 			line-height: 1.5rem;
-		}
-
-		[wctk] {
-			color: var(--blue);
-		}
-
-		[redux] {
-			color: var(--pink);
 		}
 
 		body {
@@ -43,10 +38,6 @@
 			grid-area: header;
 		}
 
-		h1 {
-			margin-block-start: 0;
-		}
-
 		shape-controls {
 			grid-area: shape-controls;
 			align-self: start;
@@ -65,6 +56,18 @@
 		footer {
 			grid-area: footer;
 			align-self: end;
+		}
+
+		h1 {
+			margin-block-start: 0;
+		}
+
+		[wctk] {
+			color: var(--blue);
+		}
+
+		[redux] {
+			color: var(--pink);
 		}
 
 		@media (min-width: 780px) {
@@ -115,14 +118,24 @@
 			<span wctk>WCTK</span> + <span redux>Redux</span>
 		</h1>
 		<p>
-			The example below demonstrates how to subscribe webcomponents
-			to a redux store using
-			<a href="https://github.com/w-lfpup/wctk-js/" target="_blank">the web component toolkit</a>.
+			This example delivers an interactive, server-side-rendered
+			app using <span wctk>web components</span> and <span redux>state management</span>.
 		</p>
 		<p>
-			The <span>shape-controls</span> component dispatches actions to a datastore, while the
-			<span>shape-list</span>
-			and <span>shape-count</span> components listen for state updates from the datastore.
+			<span wctk>Components</span> are subscribed to a <span redux>redux store</span>
+			using the <a href="https://github.com/w-lfpup/wctk-js/" target="_blank">web component
+			toolkit</a>.
+		</p>
+		<p>
+			The <span wctk>shape-controls</span> component dispatches actions to a
+			<span redux>datastore</span>, while the <span wctk>shape-list</span>
+			and <span wctk>shape-count</span> components listen for updates from the
+			<span redux>datastore</span>.
+		</p>
+		<p>
+			Checkout the
+			<a href="https://github.com/w-lfpup/wctk-redux-ssr-demo">code</a>
+			learn more!
 		</p>
 	</header>
 	<shape-controls>
@@ -140,14 +153,26 @@
 					min-inline-size: 2.5rem;
 					min-block-size: 2.5rem;
 					cursor: pointer;
-				}
 
-				button:disabled {
-					opacity: 0.1;
-				}
+					&[type=reset] {
+						inline-size: 100%;
+					}
 
-				button[type=reset] {
-					inline-size: 100%;
+					&:disabled {
+						opacity: 0.1;
+					}
+
+					&:not(:disabled):active {
+						background: var(--blue);
+						
+						&[circles] {
+							background: var(--pink);
+						}
+
+						&[type=reset] {
+							background: var(--dark-gray);
+						}
+					}
 				}
 
 				div:not(:first-of-type) {
@@ -155,9 +180,9 @@
 				}
 			</style>
 			<div>
-				<button action="shapes/decrement_circles">-</button>
+				<button action="shapes/decrement_circles" circles>-</button>
 				circles
-				<button action="shapes/increment_circles">+</button>
+				<button action="shapes/increment_circles" circles>+</button>
 			</div>
 			<div>
 				<button action="shapes/decrement_squares">-</button>
@@ -233,7 +258,7 @@
 					position: relative;
 					block-size: 3rem;
 					inline-size: 3rem;
-					background: var(--blue);
+					background: var(--blue, inherit);
 				}
 
 				::slotted([shape="circle"]) {
@@ -250,7 +275,7 @@
 					inset-inline-start: 0.4rem;
 					block-size: 3rem;
 					inline-size: 3rem;
-					border: var(--border);
+					border: var(--border, inherit);
 				}
 
 				::slotted([shape="circle"])::after {

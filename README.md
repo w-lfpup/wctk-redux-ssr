@@ -8,14 +8,14 @@ Checkout the [live demo](https://w-lfpup.github.io/wctk-redux-ssr-demo)!
 
 For this example, web components are built using [wctk-js]() and state management is implemented with [redux]()
 
-This example demonstrates how to deliver an SSR response with:
-- All styles and initial structure
+This example demonstrates how to deliver an initial response with:
+- SSR / SSG styles and structure
 - No FOUC (flash of unstyled content)
 - Web components via declarative shadow dom
 
-Then the initial response:
+Then afterwards:
 - Progressively-enhance state-management with redux
-- Progressively-enhance interactivity with wctk-js
+- Progressively-enhance web-component interactivity with wctk-js
 - Subscribe components to datastores like redux with wctk-js
 
 ## License
