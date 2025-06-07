@@ -1,8 +1,7 @@
-# Wctk-Redux-SSR-Demo
-
+# Wctk-Redux-SSR
 A demonstration of a way to build a server-side-rendered web app with web components and state management.
 
-Checkout the [live demo](https://w-lfpup.github.io/wctk-redux-ssr-demo/example/)!
+Checkout the [live demo](https://w-lfpup.github.io/wctk-redux-ssr/demo/)!
 
 ## Details
 
