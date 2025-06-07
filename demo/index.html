@@ -4,6 +4,26 @@
 <head>
 	<meta charset=utf-8>
 	<meta name=viewport content="width=device-width, initial-scale=1">
+
+	<!-- Required for Redux to not error -->
+	<script>
+		process = {
+			env: {
+				NODE_ENV: "production"
+			}
+		}
+	</script>
+	<script type="importmap">
+			{
+				"imports": {
+					"@reduxjs/toolkit": "/demo/deps/redux_bundled.js",
+					"wctk": "/demo/deps/wctk_bundled.js",
+					"datastore": "/demo/datastore/datastore.js"
+				}
+			}
+	</script>
+	<script type="module" src="./mod.js"></script>
+
 	<style>
 		:root {
 			color-scheme: light dark;
@@ -92,25 +112,6 @@
 			}
 		}
 	</style>
-	<!-- Required for Redux to not error -->
-	<script>
-		process = {
-			env: {
-				NODE_ENV: "production"
-			}
-		}
-	</script>
-	<script type="importmap">
-			{
-				"imports": {
-					"@reduxjs/toolkit": "/demo/deps/redux_bundled.js",
-					"wctk": "/demo/deps/wctk_bundled.js",
-					"datastore": "/demo/datastore/datastore.js"
-				}
-			}
-		</script>
-	<script type="module" src="./mod.js"></script>
-
 </head>
 
 <body>
