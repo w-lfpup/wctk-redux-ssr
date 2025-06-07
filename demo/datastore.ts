@@ -5,15 +5,16 @@
   one reducer to tally a list of circles and squares.
 
   This is a vanilla redux store. Redux does NOT need any
-  modifications to work alongside the WCTK or webcomponents
-  in general,.
+  modifications to work with web components or the WCTK.
 */
 
 import type { Unsubscribe } from "@reduxjs/toolkit";
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import initialState from "../../state.json" with { type: "json"};
 
-// is not exported from redux toolkit
+// EASY TO MISS! Load initial state!
+import initialState from "./state.json" with { type: "json"};
+
+// Type is not exported from redux toolkit
 export type ListenerCallback = () => void;
 
 type Shape = 'square' | 'circle';
@@ -35,7 +36,7 @@ const shapeSlice = createSlice({
 	name: 'shapes',
 	initialState: initialState as ShapeState,
 	reducers: {
-		reset: state => { 
+		reset: state => {
 			state.circles = 0;
 			state.squares = 0;
 			state.shapeList = [];
@@ -63,12 +64,10 @@ const datastore = configureStore({
 	reducer: shapeSlice.reducer
 });
 
-// this is a minimal API for web  components
-// redux does us a solid and binds the methods
-// of a datastore to the datastore itself
-const {subscribe, getState, dispatch} = datastore;
+// This is a minimal redux API for web components
+const { subscribe, getState, dispatch } = datastore;
 
-// required to remove subscriptions with the result of `subscribe()`
+// Required for WCTK to remove subscriptions with the result of `subscribe()`
 function unsubscribe(cb?: Unsubscribe): void {
 	if (cb) cb();
 }

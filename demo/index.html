@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="us-en">
+
+<head>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+
+	<!-- Required for Redux to not error -->
+	<script>
+		process = {
+			env: {
+				NODE_ENV: "production"
+			}
+		}
+	</script>
+	<script type="importmap">
+			{
+				"imports": {
+					"@reduxjs/toolkit": "/demo/deps/redux_bundled.js",
+					"wctk": "/demo/deps/wctk_bundled.js",
+					"datastore": "/demo/datastore/datastore.js"
+				}
+			}
+	</script>
+	<script type="module" src="./mod.js"></script>
+
+	<style>
+		:root {
+			color-scheme: light dark;
+
+			--blue: #3478f5;
+			--pink: #f534db;
+			--dark-gray: #434343;
+			--light-gray: #EFEFEF;
+
+			--border: 4px solid light-dark(var(--dark-gray), var(--light-gray));
+			--border-radius: 4px;
+
+			font-family: monospace;
+			line-height: 1.5rem;
+		}
+
+		body {
+			margin: 0;
+			padding: 2rem;
+			box-sizing: border-box;
+			min-block-size: 100dvh;
+			display: grid;
+			grid-template-areas:
+				"header header"
+				"shape-table shape-controls"
+				"shape-list shape-list"
+				"footer footer";
+			grid-template-rows: min-content min-content auto min-content;
+			gap: 2rem;
+		}
+
+		header {
+			grid-area: header;
+		}
+
+		shape-controls {
+			grid-area: shape-controls;
+			align-self: start;
+			justify-self: end;
+		}
+
+		shape-table {
+			grid-area: shape-table;
+			align-self: end;
+		}
+
+		shape-list {
+			grid-area: shape-list;
+		}
+
+		footer {
+			grid-area: footer;
+			align-self: end;
+		}
+
+		h1 {
+			margin-block-start: 0;
+		}
+
+		[wctk] {
+			color: var(--blue);
+		}
+
+		[redux] {
+			color: var(--pink);
+		}
+
+		@media (min-width: 780px) {
+			body {
+				grid-template-areas:
+					"header      shape-controls shape-list"
+					"header      .              shape-list"
+					"shape-table .              shape-list"
+					"footer      footer         footer";
+
+				grid-template-columns: fit-content(25%) fit-content(100%) auto;
+				grid-template-rows: auto auto auto min-content;
+			}
+
+			header {
+				max-inline-size: 40ch;
+			}
+
+			shape-controls {
+				justify-self: start;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>
+			<span wctk>WCTK</span> + <span redux>Redux</span>
+		</h1>
+		<p>
+			This example delivers an interactive, server-side-rendered
+			app using <span wctk>web components</span> and <span redux>state management</span>.
+		</p>
+		<p>
+			<span wctk>Components</span> subscribe to a <span redux>redux store</span>
+			using the <a href="https://github.com/w-lfpup/wctk-js/" target="_blank">web component
+			toolkit</a>.
+		</p>
+		<p>
+			The <span wctk>shape-controls</span> component dispatches actions to a
+			<span redux>datastore</span>, while the <span wctk>shape-list</span>
+			and <span wctk>shape-count</span> components listen for updates from the
+			<span redux>datastore</span>.
+		</p>
+		<p>
+			Checkout the
+			<a href="https://github.com/w-lfpup/wctk-redux-ssr/">code</a>
+			to learn more!
+		</p>
+	</header>
+	<shape-controls>
+		<template shadowrootmode="closed">
+			<style>
+				:host {
+					display: inline-block;
+				}
+
+				button {
+					background: transparent;
+					border: var(--border, initial);
+					border-radius: var(--border-radius);
+					font-family: monospace;
+					min-inline-size: 2.5rem;
+					min-block-size: 2.5rem;
+					cursor: pointer;
+
+					&[type=reset] {
+						inline-size: 100%;
+					}
+
+					&:disabled {
+						opacity: 0.1;
+						cursor: not-allowed;
+					}
+
+					&:not(:disabled):active {
+						background: var(--pink);
+
+						&[squares] {
+							background: var(--blue);
+						}
+
+						&[type=reset] {
+							background: var(--dark-gray);
+						}
+					}
+				}
+
+				div:not(:first-of-type) {
+					margin-block-start: 1rem;
+				}
+			</style>
+			<div>
+				<button action="shapes/decrement_circles">-</button>
+				circles
+				<button action="shapes/increment_circles">+</button>
+			</div>
+			<div>
+				<button action="shapes/decrement_squares" squares>-</button>
+				squares
+				<button action="shapes/increment_squares" squares>+</button>
+			</div>
+			<div>
+				<button type="reset" action="shapes/reset">reset</button>
+			</div>
+		</template>
+	</shape-controls>
+	<shape-table>
+		<template shadowrootmode="closed">
+			<style>
+				table {
+					border-collapse: collapse;
+				}
+
+				td:last-child {
+					padding-inline-start: 2ch;
+				}
+
+				::slotted([slot="circle_count"]) {
+					color: var(--pink, inherit);
+				}
+
+				::slotted([slot="square_count"]) {
+					color: var(--blue, inherit);
+				}
+			</style>
+			<table>
+				<tr>
+					<td>circles</td>
+					<td>
+						<slot name="circle_count"></slot>
+					</td>
+				</tr>
+				<tr>
+					<td>squares</td>
+					<td>
+						<slot name="square_count"></slot>
+					</td>
+				</tr>
+				<tr>
+					<td>total</td>
+					<td>
+						<slot name="total"></slot>
+					</td>
+				</tr>
+			</table>
+		</template>
+
+		<span slot="circle_count">28</span>
+		<span slot="square_count">36</span>
+		<span slot="total">64</span>
+	</shape-table>
+	<shape-list>
+		<template shadowrootmode="closed">
+			<style>
+				ul {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+				}
+
+				slot {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 1rem;
+				}
+
+				::slotted([shape]) {
+					position: relative;
+					block-size: 3rem;
+					inline-size: 3rem;
+					background: var(--blue, inherit);
+				}
+
+				::slotted([shape])::after {
+					content: "";
+					display: block;
+					position: absolute;
+					box-sizing: border-box;
+					inset-block-start: 0.4rem;
+					inset-inline-start: 0.4rem;
+					block-size: 3rem;
+					inline-size: 3rem;
+					border: var(--border, inherit);
+				}
+
+				::slotted([shape="circle"]) {
+					background: var(--pink);
+					border-radius: 2rem;
+				}
+
+				::slotted([shape="circle"])::after {
+					border-radius: 2rem;
+				}
+			</style>
+			<ul>
+				<slot></slot>
+			</ul>
+		</template>
+
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="circle"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+		<li shape="square"></li>
+	</shape-list>
+	<footer>
+		<hr>
+	</footer>
+</body>
+
+</html>
