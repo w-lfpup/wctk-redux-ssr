@@ -178,7 +178,7 @@
 					}
 				}
 
-				div:not(:first-of-type) {
+				button:last-child {
 					margin-block-start: 1rem;
 				}
 			</style>
@@ -192,9 +192,7 @@
 				squares
 				<button action="shapes/increment_squares" squares>+</button>
 			</div>
-			<div>
-				<button type="reset" action="shapes/reset">reset</button>
-			</div>
+			<button type="reset" action="shapes/reset">reset</button>
 		</template>
 	</shape-controls>
 	<shape-table>
