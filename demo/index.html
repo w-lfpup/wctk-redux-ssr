@@ -35,6 +35,7 @@
 
 			--border: 4px solid light-dark(var(--dark-gray), var(--light-gray));
 			--border-radius: 4px;
+			--color: light-dark(var(--dark-gray), var(--light-gray));
 
 			font-family: monospace;
 			line-height: 1.5rem;
@@ -149,8 +150,9 @@
 
 				button {
 					background: transparent;
-					border: var(--border, initial);
+					border: var(--border);
 					border-radius: var(--border-radius);
+					color: var(--color);
 					font-family: monospace;
 					min-inline-size: 2.5rem;
 					min-block-size: 2.5rem;
@@ -207,11 +209,11 @@
 				}
 
 				::slotted([slot="circle_count"]) {
-					color: var(--pink, inherit);
+					color: var(--pink);
 				}
 
 				::slotted([slot="square_count"]) {
-					color: var(--blue, inherit);
+					color: var(--blue);
 				}
 			</style>
 			<table>
@@ -259,7 +261,7 @@
 					position: relative;
 					block-size: 3rem;
 					inline-size: 3rem;
-					background: var(--blue, inherit);
+					background: var(--blue);
 				}
 
 				::slotted([shape])::after {
@@ -271,7 +273,7 @@
 					inset-inline-start: 0.4rem;
 					block-size: 3rem;
 					inline-size: 3rem;
-					border: var(--border, inherit);
+					border: var(--border);
 				}
 
 				::slotted([shape="circle"]) {
